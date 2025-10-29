@@ -324,6 +324,16 @@
             background: rgba(0, 0, 0, 0.4);
             transform: scale(1.01);
         }
+
+        .orf-sequence {
+            font-family: monospace;
+            background: rgba(50, 205, 50, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            word-break: break-all;
+            margin: 10px 0;
+            border-left: 4px solid var(--accent);
+        }
         
         .warning {
             color: #ffcc00;
@@ -337,6 +347,30 @@
         
         .success {
             color: var(--accent);
+            font-weight: bold;
+        }
+
+        .orf-item {
+            background: rgba(50, 205, 50, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .orf-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .orf-length {
+            background: var(--accent);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
             font-weight: bold;
         }
 
@@ -1211,7 +1245,7 @@
                 </button>
                 <ul class="nav-links">
                     <li><a href="#" onclick="navigateToHome()">Home</a></li>
-                    <li><a href="#" onclick="navigateToHome()">Articles</a></li>
+                    <li><a href="#blog-list">Articles</a></li>
                     <li><a href="#">Research</a></li>
                     <li><a href="#tools">Tools</a></li>
                     <li><a href="#">About</a></li>
@@ -1385,7 +1419,7 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="#" onclick="navigateToHome()">Home</a></li>
-                        <li><a href="#" onclick="navigateToHome()">Articles</a></li>
+                        <li><a href="#blog-list">Articles</a></li>
                         <li><a href="#">Research</a></li>
                         <li><a href="#tools">Tools</a></li>
                     </ul>
@@ -1393,14 +1427,13 @@
                 <div class="footer-column">
                     <h3>Contact Us</h3>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> info@biotechinsights.com</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Research Park, Bio Valley</li>
-                    </ul>
+                        <li><i class="fas fa-envelope"></i> knab3850@gmail.com</li>
+                        
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 BioTech Insights. All rights reserved.</p>
+                <p>&copy; 2025 BioTech Insights. All rights reserved.</p>
+                <p>Created by Nabhan.</p>
             </div>
         </div>
     </footer>
@@ -1416,12 +1449,12 @@
             'crispr-2.0': {
                 id: 'crispr-2.0',
                 title: 'CRISPR 2.0: The Next Generation of Gene Editing',
-                date: 'June 18, 2023',
+                date: 'October 29, 2025',
                 readTime: '7 min read',
                 image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
                 excerpt: 'Explore the latest advancements in CRISPR technology that promise more precise gene editing with fewer off-target effects.',
                 category: 'Gene Editing',
-                author: 'Dr. Sarah Chen',
+                author: 'Nabhan Khan',
                 content: `
                     <h2>The Evolution of Gene Editing</h2>
                     <p>CRISPR technology has revolutionized genetic engineering since its discovery, but the first generation had limitations. CRISPR 2.0 represents a significant leap forward in precision and safety.</p>
@@ -1454,12 +1487,12 @@
             'mrna-technology': {
                 id: 'mrna-technology',
                 title: 'Beyond COVID: mRNA Technology\'s Next Frontier',
-                date: 'June 12, 2023',
+                date: 'October 29, 2025',
                 readTime: '5 min read',
                 image: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
                 excerpt: 'How mRNA vaccine technology is being adapted to fight cancer, HIV, and other challenging diseases.',
                 category: 'Vaccine Technology',
-                author: 'Dr. Michael Torres',
+                author: 'Nabhan Mohammad Wasiq Ali Khan',
                 content: `
                     <h2>mRNA: More Than Just Vaccines</h2>
                     <p>The success of mRNA vaccines during the COVID-19 pandemic has opened up new possibilities for treating various diseases beyond infectious diseases.</p>
@@ -1493,12 +1526,12 @@
             'cultured-meat': {
                 id: 'cultured-meat',
                 title: 'Cultured Meat: Sustainable Protein Revolution',
-                date: 'June 5, 2023',
+                date: 'October 29, 2025',
                 readTime: '8 min read',
                 image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
                 excerpt: 'Examining the science, challenges, and future of lab-grown meat as a solution to environmental and ethical concerns.',
                 category: 'Food Technology',
-                author: 'Dr. Elena Rodriguez',
+                author: 'Nabhan Mohammad Wasiq Ali Khan',
                 content: `
                     <h2>The Science Behind Cultured Meat</h2>
                     <p>Cultured meat, also known as lab-grown or cell-based meat, is produced by cultivating animal cells in a controlled environment rather than raising and slaughtering animals.</p>
@@ -1746,10 +1779,12 @@
                 });
             });
             
-            // Count genotype occurrences
+            // Count genotype occurrences - FIXED: Treat AB and BA as the same
             const genotypeCounts = {};
             allGenotypes.forEach(genotype => {
-                genotypeCounts[genotype] = (genotypeCounts[genotype] || 0) + 1;
+                // Normalize genotype: sort alleles alphabetically so AB and BA become the same
+                const normalizedGenotype = genotype.split('').sort().join('');
+                genotypeCounts[normalizedGenotype] = (genotypeCounts[normalizedGenotype] || 0) + 1;
             });
             
             // Calculate probabilities
@@ -1777,25 +1812,50 @@
             
             punnettHTML += '</div>';
             
-            // Calculate phenotype probabilities (assuming complete dominance)
+            // FIXED: Calculate phenotype probabilities with proper dominant trait detection
             const phenotypes = {};
-            Object.keys(genotypeCounts).forEach(genotype => {
-                // For complete dominance: AA and Aa show dominant phenotype, aa shows recessive
+            
+            // Get all unique alleles to determine dominant traits
+            const allAlleles = [...new Set(parent1.split('').concat(parent2.split('')))];
+            
+            // Determine which alleles are dominant (uppercase) and which are recessive (lowercase)
+            const dominantAlleles = allAlleles.filter(allele => allele === allele.toUpperCase() && allele !== allele.toLowerCase());
+            const recessiveAlleles = allAlleles.filter(allele => allele === allele.toLowerCase());
+            
+            // Count phenotypes from ALL genotypes
+            allGenotypes.forEach(genotype => {
                 let phenotype;
                 const alleles = genotype.split('');
-                if (alleles[0] === alleles[1]) {
-                    // Homozygous
-                    phenotype = alleles[0].toUpperCase() === alleles[0] ? 'Dominant' : 'Recessive';
-                } else {
-                    // Heterozygous - show dominant phenotype
+                
+                // Check if genotype contains any dominant alleles
+                const hasDominant = alleles.some(allele => dominantAlleles.includes(allele));
+                
+                if (hasDominant) {
+                    // If there are dominant alleles, phenotype is determined by the dominant trait
                     phenotype = 'Dominant';
+                } else if (recessiveAlleles.length > 0) {
+                    // If no dominant alleles but there are recessive alleles, phenotype is recessive
+                    phenotype = 'Recessive';
+                } else {
+                    // If all alleles are the same case (no clear dominance), show codominance
+                    phenotype = 'Codominant';
                 }
                 
-                phenotypes[phenotype] = (phenotypes[phenotype] || 0) + genotypeCounts[genotype];
+                phenotypes[phenotype] = (phenotypes[phenotype] || 0) + 1;
             });
             
-            // Display phenotype probabilities
+            // Display phenotype probabilities with explanation
             punnettHTML += '<h4>Phenotype Probabilities</h4>';
+            
+            // Add explanation about dominant traits
+            if (dominantAlleles.length > 0) {
+                punnettHTML += `<p><strong>Dominant trait:</strong> ${dominantAlleles.join(', ')} allele(s)</p>`;
+            } else if (recessiveAlleles.length > 0) {
+                punnettHTML += `<p><strong>No clear dominant trait detected</strong> - showing recessive phenotype for ${recessiveAlleles.join(', ')} allele(s)</p>`;
+            } else {
+                punnettHTML += `<p><strong>Codominant inheritance</strong> - both alleles expressed equally</p>`;
+            }
+            
             punnettHTML += '<div class="genotype-results">';
             
             Object.keys(phenotypes).forEach(phenotype => {
@@ -1818,6 +1878,8 @@
                     <h4>Inheritance Pattern</h4>
                     <p><strong>Parent 1:</strong> ${parent1} | <strong>Parent 2:</strong> ${parent2}</p>
                     <p>This cross demonstrates ${getInheritancePattern(parent1, parent2)} inheritance.</p>
+                    ${dominantAlleles.length > 0 ? `<p><strong>Dominant allele(s):</strong> ${dominantAlleles.join(', ')}</p>` : ''}
+                    ${recessiveAlleles.length > 0 ? `<p><strong>Recessive allele(s):</strong> ${recessiveAlleles.join(', ')}</p>` : ''}
                 </div>
             `;
             
@@ -1843,7 +1905,7 @@
             }
         }
 
-        // DNA Sequence Analysis
+        // DNA Sequence Analysis with ORF Detection
         function analyzeDNA() {
             const sequenceInput = document.getElementById('dna-sequence');
             const resultDiv = document.getElementById('dna-result');
@@ -1860,7 +1922,7 @@
                 return;
             }
             
-            // Perform analysis
+            // Perform basic analysis
             const length = sequence.length;
             const aCount = (sequence.match(/A/g) || []).length;
             const tCount = (sequence.match(/T/g) || []).length;
@@ -1882,6 +1944,9 @@
             }).join('');
             
             const reverseComplement = complementary.split('').reverse().join('');
+            
+            // Find ORFs (Open Reading Frames)
+            const orfs = findORFs(sequence);
             
             // Display results
             let resultsHTML = `
@@ -1906,7 +1971,103 @@
             const molecularWeight = (aCount * 313.21) + (tCount * 304.2) + (cCount * 289.18) + (gCount * 329.21);
             resultsHTML += `<div class="result-item"><strong>Approximate Molecular Weight:</strong> ${molecularWeight.toFixed(2)} g/mol</div>`;
             
+            // Add ORF results
+            resultsHTML += `<h4>Open Reading Frames (ORFs) Found: ${orfs.length}</h4>`;
+            
+            if (orfs.length > 0) {
+                orfs.forEach((orf, index) => {
+                    resultsHTML += `
+                        <div class="orf-item">
+                            <div class="orf-header">
+                                <strong>ORF ${index + 1}</strong>
+                                <span class="orf-length">${orf.length} bases</span>
+                            </div>
+                            <div class="result-item"><strong>Frame:</strong> ${orf.frame}</div>
+                            <div class="result-item"><strong>Position:</strong> ${orf.start + 1}-${orf.end}</div>
+                            <div class="result-item"><strong>Sequence:</strong></div>
+                            <div class="orf-sequence">${orf.sequence}</div>
+                        </div>
+                    `;
+                });
+            } else {
+                resultsHTML += `<div class="result-item warning">No significant ORFs found (minimum length: 30 bases)</div>`;
+            }
+            
             resultDiv.innerHTML = resultsHTML;
+        }
+
+        // Function to find Open Reading Frames (ORFs)
+        function findORFs(sequence) {
+            const startCodon = 'ATG';
+            const stopCodons = ['TAA', 'TAG', 'TGA'];
+            const minORFLength = 30; // Minimum ORF length in bases
+            const orfs = [];
+            
+            // Check all 6 reading frames (3 forward, 3 reverse)
+            for (let frame = 0; frame < 6; frame++) {
+                let currentSequence;
+                let frameType;
+                
+                if (frame < 3) {
+                    // Forward frames
+                    currentSequence = sequence.substring(frame);
+                    frameType = `Forward +${frame + 1}`;
+                } else {
+                    // Reverse frames
+                    const revComp = sequence.split('').map(base => {
+                        switch(base) {
+                            case 'A': return 'T';
+                            case 'T': return 'A';
+                            case 'C': return 'G';
+                            case 'G': return 'C';
+                            default: return base;
+                        }
+                    }).reverse().join('');
+                    currentSequence = revComp.substring(frame - 3);
+                    frameType = `Reverse -${frame - 2}`;
+                }
+                
+                let i = 0;
+                while (i < currentSequence.length - 2) {
+                    const codon = currentSequence.substring(i, i + 3);
+                    
+                    if (codon === startCodon) {
+                        // Found start codon, look for stop codon
+                        let j = i + 3;
+                        let foundStop = false;
+                        
+                        while (j < currentSequence.length - 2) {
+                            const nextCodon = currentSequence.substring(j, j + 3);
+                            if (stopCodons.includes(nextCodon)) {
+                                // Found stop codon
+                                const orfSequence = currentSequence.substring(i, j + 3);
+                                if (orfSequence.length >= minORFLength) {
+                                    orfs.push({
+                                        sequence: orfSequence,
+                                        start: i,
+                                        end: j + 2,
+                                        frame: frameType,
+                                        length: orfSequence.length
+                                    });
+                                }
+                                i = j + 2;
+                                foundStop = true;
+                                break;
+                            }
+                            j += 3;
+                        }
+                        
+                        if (!foundStop) {
+                            i += 3;
+                        }
+                    } else {
+                        i += 3;
+                    }
+                }
+            }
+            
+            // Sort ORFs by length (longest first)
+            return orfs.sort((a, b) => b.length - a.length);
         }
         
         // Drug Interaction Checker
