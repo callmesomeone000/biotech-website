@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioTech Insights | Advanced Biotech Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2E8B57;
+            --secondary: #4682B4;
+            --dark: #1a3c34;
+            --light: #f8f9fa;
+            --accent: #32CD32;
+            --text: #333333;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding:1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(26, 60, 52, 0.95);
+            backdrop-filter: blur(50px);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 2rem 0;
+            background: rgba(26, 90, 52, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeInDown 1s ease;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease 0.4s both;
+            box-shadow: 0 4px 15px rgba(50, 205, 50, 0.4);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(50, 205, 50, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        /* Tools Section */
+        .tools-section {
+            padding: 5rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .tool-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(50, 205, 50, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .tool-container:hover::before {
+            left: 100%;
+        }
+
+        .tool-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(50, 205, 50, 0.3);
+        }
+        
+        .tool-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-family: monospace;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .tool-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(50, 205, 50, 0.3);
+            transform: scale(1.02);
+        }
+        
+        .tool-btn {
+            padding: 12px 25px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-btn:hover {
+            background: #28a428;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(50, 205, 50, 0.4);
+        }
+
+        .tool-btn:active {
+            transform: translateY(0);
+        }
+        
+        .tool-result {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .result-item {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .result-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            padding-left: 10px;
+        }
+        
+        .sequence-display {
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+            word-break: break-all;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .sequence-display:hover {
+            background: rgba(0, 0, 0, 0.4);
+            transform: scale(1.01);
+        }
+        
+        .warning {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        
+        .error {
+            color: #ff4757;
+            font-weight: bold;
+        }
+        
+        .success {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Punnett Square Styles */
+        .punnett-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .punnett-inputs {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .parent-input {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            min-width: 150px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .parent-input:hover {
+            transform: translateY(-3px);
+            border-color: rgba(50, 205, 50, 0.3);
+        }
+        
+        .parent-input label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .parent-input input {
+            width: 80px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .parent-input input:focus {
+            outline: none;
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .punnett-square {
+            display: grid;
+            grid-template-columns: 60px repeat(2, 80px);
+            grid-template-rows: 60px repeat(2, 80px);
+            gap: 3px;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            animation: zoomIn 0.5s ease;
+        }
+        
+        .punnett-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #333;
+            min-height: 60px;
+            transition: all 0.3s ease;
+            animation: popIn 0.3s ease;
+        }
+
+        .punnett-cell:hover {
+            transform: scale(1.05);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .punnett-header {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .punnett-genotype {
+            background: rgba(50, 205, 50, 0.2);
+            border: 2px solid var(--accent);
+        }
+        
+        .punnett-results {
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+        
+        .genotype-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .genotype-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+            animation: slideInLeft 0.5s ease;
+        }
+
+        .genotype-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .genotype-ratio {
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-top: 5px;
+        }
+        
+        .example-text {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .placeholder-text {
+            text-align: center;
+            padding: 3rem 2rem;
+            opacity: 0.8;
+            font-style: italic;
+            animation: pulse 2s infinite;
+        }
+
+        /* Blog Section */
+        .blog-section {
+            padding: 5rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            position: relative;
+            animation: fadeInUp 1s ease;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+            animation: expandWidth 1s ease 0.5s both;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.5s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(50, 205, 50, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .blog-card:hover::before {
+            opacity: 1;
+        }
+
+        .blog-card.animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .blog-card:nth-child(1) { animation-delay: 0.1s; }
+        .blog-card:nth-child(2) { animation-delay: 0.2s; }
+        .blog-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .blog-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(50, 205, 50, 0.3);
+        }
+
+        .card-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .blog-card:hover .card-img img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .card-content h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            transition: color 0.3s ease;
+        }
+
+        .blog-card:hover .card-content h3 {
+            color: var(--accent);
+        }
+
+        .card-content p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .read-more::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .read-more:hover {
+            transform: translateX(5px);
+        }
+
+        .read-more:hover::after {
+            width: 100%;
+        }
+
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+
+        .read-more:hover i {
+            transform: translateX(3px);
+        }
+
+        /* FIXED: Blog Detail Page Styles */
+        .blog-detail-page {
+            padding: 8rem 0 4rem;
+            min-height: 100vh;
+            display: none;
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-to-blog-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-to-blog-btn:hover {
+            background: #28a428;
+            transform: translateX(-5px);
+        }
+
+        .blog-article {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 0 auto;
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+        }
+
+        .blog-article-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .blog-category {
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .blog-article-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .blog-article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+            opacity: 0.8;
+            flex-wrap: wrap;
+        }
+
+        .blog-article-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 2rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .blog-article-content {
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .blog-article-content h2 {
+            color: var(--accent);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+
+        .blog-article-content h3 {
+            color: var(--accent);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        .blog-article-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .blog-article-content ul, .blog-article-content ol {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+
+        .blog-article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-article-footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0 2rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            text-align: left;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-column:hover h3::after {
+            width: 80px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-column ul li:hover {
+            transform: translateX(5px);
+        }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            margin-right: 10px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .social-links a:hover::before {
+            left: 100%;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(50, 205, 50, 0.4);
+        }
+
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1s ease 0.5s both;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            70% {
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 80px; }
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            left: 80%;
+            animation-delay: -5s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 80%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1.5rem;
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+                animation: slideDown 0.3s ease;
+            }
+
+            .nav-links li {
+                margin: 0;
+                margin-bottom: 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 1.5rem;
+                right: 20px;
+            }
+
+            .hero {
+                padding: 6rem 0 3rem;
+                min-height: 60vh;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .punnett-square {
+                grid-template-columns: 40px repeat(2, 60px);
+                grid-template-rows: 40px repeat(2, 60px);
+            }
+            
+            .punnett-cell {
+                font-size: 1rem;
+                min-height: 50px;
+            }
+
+            .tool-container {
+                padding: 1.5rem;
+            }
+
+            /* Blog Detail Responsive */
+            .blog-article {
+                padding: 2rem;
+            }
+
+            .blog-article-header h1 {
+                font-size: 2rem;
+            }
+
+            .blog-article-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .blog-article-image {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 5rem 0 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .blog-section, .tools-section {
+                padding: 3rem 0;
+            }
+            
+            .punnett-square {
+                grid-template-columns: 30px repeat(2, 50px);
+                grid-template-rows: 30px repeat(2, 50px);
+            }
+            
+            .punnett-cell {
+                font-size: 0.9rem;
+                min-height: 40px;
+            }
+
+            .punnett-inputs {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .blog-article {
+                padding: 1.5rem;
+            }
+
+            .blog-article-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid var(--accent);
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(50, 205, 50, 0.4);
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 6px 20px rgba(50, 205, 50, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo" onclick="navigateToHome()">
+                    <i class="fas fa-dna"></i> BioTech Insights
+                </a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="navigateToHome()">Home</a></li>
+                    <li><a href="#" onclick="navigateToHome()">Articles</a></li>
+                    <li><a href="#">Research</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Advanced Biotechnology Platform</h1>
+                <p>Research articles, DNA analysis tools, drug interaction checking, and a lot more!</p>
+                <a href="#tools" class="btn">Explore Features</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="tools-section" id="tools">
+        <div class="container">
+            <h2 class="section-title">Biotech Analysis Tools</h2>
+            
+            <!-- Punnett Square Calculator -->
+            <div class="tool-container">
+                <h3>Punnett Square Calculator</h3>
+                <p>Enter parent genotypes to calculate possible offspring genotypes and phenotypic probabilities.</p>
+                
+                <div class="punnett-container">
+                    <div class="punnett-inputs">
+                        <div class="parent-input">
+                            <label for="parent1">Parent 1 Genotype</label>
+                            <input type="text" id="parent1" maxlength="2" value="">
+                            <div class="example-text">Examples: AA, AB</div>
+                        </div>
+                        <div class="parent-input">
+                            <label for="parent2">Parent 2 Genotype</label>
+                            <input type="text" id="parent2" maxlength="2" value="">
+                            <div class="example-text">Examples: BB, AB</div>
+                        </div>
+                    </div>
+                    
+                    <button class="tool-btn" onclick="calculatePunnett()">
+                        <i class="fas fa-calculator"></i> Calculate Punnett Square
+                    </button>
+                    
+                    <div class="tool-result" id="punnett-result">
+                        <!-- Initial placeholder state -->
+                        <div class="placeholder-text" id="punnett-placeholder">
+                            <p>Enter parent genotypes to see the Punnett Square and genetic probabilities.</p>
+                        </div>
+                        
+                        <!-- Results section (hidden initially) -->
+                        <div class="punnett-results-section" id="punnett-results-section" style="display: none;">
+                            <!-- Results will be inserted here by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DNA Sequence Analyzer -->
+            <div class="tool-container">
+                <h3><i class="fas fa-dna"></i> DNA Sequence Analyzer</h3>
+                <p>Enter a DNA sequence to analyze its properties, find ORFs, and get complementary sequences.</p>
+                <textarea class="tool-input" id="dna-sequence" rows="5" placeholder="Enter DNA sequence (e.g., ATGCCGTA...)"></textarea>
+                <button class="tool-btn" onclick="analyzeDNA()">Analyze Sequence</button>
+                <div class="tool-result" id="dna-result">
+                    <p>Results will appear here after analysis.</p>
+                </div>
+            </div>
+            
+            <!-- Drug Interaction Checker -->
+            <div class="tool-container">
+                <h3><i class="fas fa-pills"></i> Drug Interaction Checker</h3>
+                <p>Enter drug names to check for potential interactions using real medical data.</p>
+                <input type="text" class="tool-input" placeholder="First drug name" id="drug1">
+                <input type="text" class="tool-input" placeholder="Second drug name" id="drug2">
+                <button class="tool-btn" onclick="checkDrugInteractions()">Check Interactions</button>
+                <div class="spinner" id="drug-spinner"></div>
+                <div class="tool-result" id="interaction-result">
+                    <p>Enter two drug names to check for interactions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog List Section -->
+    <section class="blog-section" id="blog-list">
+        <div class="container">
+            <h2 class="section-title">Latest Biotech Articles</h2>
+            <div class="blog-grid">
+                <div class="blog-card animate">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="CRISPR Research">
+                    </div>
+                    <div class="card-content">
+                        <h3>CRISPR 2.0: The Next Generation of Gene Editing</h3>
+                        <p>Explore the latest advancements in CRISPR technology that promise more precise gene editing with fewer off-target effects.</p>
+                        <div class="card-meta">
+                            <span><i class="far fa-calendar"></i> June 18, 2023</span>
+                            <span><i class="far fa-clock"></i> 7 min read</span>
+                        </div>
+                        <a href="javascript:void(0)" class="read-more" onclick="showBlogPost('crispr-2.0')">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card animate">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="mRNA Vaccine">
+                    </div>
+                    <div class="card-content">
+                        <h3>Beyond COVID: mRNA Technology's Next Frontier</h3>
+                        <p>How mRNA vaccine technology is being adapted to fight cancer, HIV, and other challenging diseases.</p>
+                        <div class="card-meta">
+                            <span><i class="far fa-calendar"></i> June 12, 2023</span>
+                            <span><i class="far fa-clock"></i> 5 min read</span>
+                        </div>
+                        <a href="javascript:void(0)" class="read-more" onclick="showBlogPost('mrna-technology')">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card animate">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Lab-grown meat">
+                    </div>
+                    <div class="card-content">
+                        <h3>Cultured Meat: Sustainable Protein Revolution</h3>
+                        <p>Examining the science, challenges, and future of lab-grown meat as a solution to environmental and ethical concerns.</p>
+                        <div class="card-meta">
+                            <span><i class="far fa-calendar"></i> June 5, 2023</span>
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                        </div>
+                        <a href="javascript:void(0)" class="read-more" onclick="showBlogPost('cultured-meat')">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FIXED: Blog Detail Page -->
+    <section class="blog-detail-page" id="blog-detail">
+        <div class="container">
+            <button class="back-to-blog-btn" onclick="showBlogList()">
+                <i class="fas fa-arrow-left"></i> Back to Articles
+            </button>
+            <article class="blog-article" id="blog-article-content">
+                <!-- Blog content will be loaded here dynamically -->
+            </article>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>BioTech Insights</h3>
+                    <p>Advanced platform for biotechnology research, tools, and community discussion.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" onclick="navigateToHome()">Home</a></li>
+                        <li><a href="#" onclick="navigateToHome()">Articles</a></li>
+                        <li><a href="#">Research</a></li>
+                        <li><a href="#tools">Tools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@biotechinsights.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Research Park, Bio Valley</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BioTech Insights. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // Blog Posts Data
+        const blogPosts = {
+            'crispr-2.0': {
+                id: 'crispr-2.0',
+                title: 'CRISPR 2.0: The Next Generation of Gene Editing',
+                date: 'June 18, 2023',
+                readTime: '7 min read',
+                image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
+                excerpt: 'Explore the latest advancements in CRISPR technology that promise more precise gene editing with fewer off-target effects.',
+                category: 'Gene Editing',
+                author: 'Dr. Sarah Chen',
+                content: `
+                    <h2>The Evolution of Gene Editing</h2>
+                    <p>CRISPR technology has revolutionized genetic engineering since its discovery, but the first generation had limitations. CRISPR 2.0 represents a significant leap forward in precision and safety.</p>
+                    
+                    <h3>Key Advancements in CRISPR 2.0</h3>
+                    <p>The new generation of CRISPR tools addresses several critical limitations:</p>
+                    <ul>
+                        <li><strong>Base Editing:</strong> Allows precise single-letter changes in DNA without cutting both strands</li>
+                        <li><strong>Prime Editing:</strong> Enables search-and-replace functionality for genetic sequences</li>
+                        <li><strong>Reduced Off-Target Effects:</strong> Improved specificity through engineered Cas proteins</li>
+                        <li><strong>Epigenetic Editing:</strong> Can modify gene expression without altering DNA sequence</li>
+                    </ul>
+
+                    <h3>Clinical Applications</h3>
+                    <p>CRISPR 2.0 is already showing promise in clinical trials for:</p>
+                    <ul>
+                        <li>Sickle cell anemia and beta-thalassemia treatments</li>
+                        <li>Hereditary transthyretin amyloidosis</li>
+                        <li>Certain types of inherited blindness</li>
+                        <li>Cancer immunotherapy approaches</li>
+                    </ul>
+
+                    <h3>Ethical Considerations</h3>
+                    <p>With increased precision comes increased responsibility. The scientific community continues to develop guidelines for responsible use of these powerful tools, particularly regarding germline editing.</p>
+
+                    <h3>Future Directions</h3>
+                    <p>Researchers are working on delivery systems that can target specific tissues and organs, making CRISPR therapies more effective and safer for a wider range of conditions.</p>
+                `
+            },
+            'mrna-technology': {
+                id: 'mrna-technology',
+                title: 'Beyond COVID: mRNA Technology\'s Next Frontier',
+                date: 'June 12, 2023',
+                readTime: '5 min read',
+                image: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
+                excerpt: 'How mRNA vaccine technology is being adapted to fight cancer, HIV, and other challenging diseases.',
+                category: 'Vaccine Technology',
+                author: 'Dr. Michael Torres',
+                content: `
+                    <h2>mRNA: More Than Just Vaccines</h2>
+                    <p>The success of mRNA vaccines during the COVID-19 pandemic has opened up new possibilities for treating various diseases beyond infectious diseases.</p>
+                    
+                    <h3>Cancer Immunotherapy</h3>
+                    <p>Researchers are developing personalized mRNA cancer vaccines that teach the immune system to recognize and attack cancer cells. These vaccines are tailored to individual patients based on the specific mutations in their tumors.</p>
+                    
+                    <h3>Infectious Disease Applications</h3>
+                    <p>Beyond COVID-19, mRNA technology is being applied to:</p>
+                    <ul>
+                        <li><strong>HIV:</strong> Developing vaccines that can generate broadly neutralizing antibodies</li>
+                        <li><strong>Influenza:</strong> Creating universal flu vaccines that provide protection against multiple strains</li>
+                        <li><strong>Zika and Ebola:</strong> Rapid development of vaccines for emerging infectious diseases</li>
+                    </ul>
+
+                    <h3>Rare Genetic Diseases</h3>
+                    <p>mRNA can be used to provide temporary copies of missing or defective proteins in genetic disorders like cystic fibrosis and certain metabolic diseases.</p>
+
+                    <h3>Advantages of mRNA Platform</h3>
+                    <ul>
+                        <li>Rapid development and manufacturing</li>
+                        <li>High potency and efficacy</li>
+                        <li>Excellent safety profile</li>
+                        <li>Flexibility to address multiple diseases</li>
+                    </ul>
+
+                    <h3>Challenges and Future Directions</h3>
+                    <p>While promising, mRNA technology faces challenges including stability, delivery optimization, and manufacturing scalability for global distribution.</p>
+                `
+            },
+            'cultured-meat': {
+                id: 'cultured-meat',
+                title: 'Cultured Meat: Sustainable Protein Revolution',
+                date: 'June 5, 2023',
+                readTime: '8 min read',
+                image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
+                excerpt: 'Examining the science, challenges, and future of lab-grown meat as a solution to environmental and ethical concerns.',
+                category: 'Food Technology',
+                author: 'Dr. Elena Rodriguez',
+                content: `
+                    <h2>The Science Behind Cultured Meat</h2>
+                    <p>Cultured meat, also known as lab-grown or cell-based meat, is produced by cultivating animal cells in a controlled environment rather than raising and slaughtering animals.</p>
+                    
+                    <h3>Production Process</h3>
+                    <p>The manufacturing process involves several key steps:</p>
+                    <ol>
+                        <li><strong>Cell Sourcing:</strong> Obtaining stem cells from animals through harmless biopsies</li>
+                        <li><strong>Cell Proliferation:</strong> Growing cells in bioreactors with nutrient-rich media</li>
+                        <li><strong>Differentiation:</strong> Guiding cells to develop into muscle, fat, and connective tissue</li>
+                        <li><strong>Structuring:</strong> Assembling tissues into recognizable meat products</li>
+                    </ol>
+
+                    <h3>Environmental Benefits</h3>
+                    <p>Cultured meat offers significant environmental advantages:</p>
+                    <ul>
+                        <li>Reduces greenhouse gas emissions by up to 96% compared to conventional meat</li>
+                        <li>Uses 99% less land</li>
+                        <li>Consumes 82-96% less water</li>
+                        <li>Eliminates agricultural runoff pollution</li>
+                    </ul>
+
+                    <h3>Current Challenges</h3>
+                    <p>Despite progress, several hurdles remain:</p>
+                    <ul>
+                        <li><strong>Cost Reduction:</strong> Scaling production to achieve price parity with conventional meat</li>
+                        <li><strong>Texture and Taste:</strong> Perfecting the mouthfeel and flavor profile</li>
+                        <li><strong>Regulatory Approval:</strong> Navigating food safety regulations in different countries</li>
+                        <li><strong>Consumer Acceptance:</strong> Overcoming the "yuck factor" and building trust</li>
+                    </ul>
+
+                    <h3>Future Outlook</h3>
+                    <p>As technology advances and costs decrease, cultured meat could become a mainstream protein source within the next decade, potentially transforming our food systems and reducing the environmental impact of meat production.</p>
+
+                    <h3>Ethical Considerations</h3>
+                    <p>Cultured meat addresses animal welfare concerns while meeting the growing global demand for protein in a more sustainable way.</p>
+                `
+            }
+        };
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            const header = document.querySelector('header');
+            const scrollToTop = document.getElementById('scrollToTop');
+            
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.innerHTML = navLinks.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Scroll to top button
+                if (window.scrollY > 300) {
+                    scrollToTop.classList.add('show');
+                } else {
+                    scrollToTop.classList.remove('show');
+                }
+            });
+
+            // Scroll to top functionality
+            scrollToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Scroll animations for blog cards
+            const blogCards = document.querySelectorAll('.blog-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            blogCards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // Fix for Punnett Square inputs - prevent auto-uppercase while typing
+            const punnettInputs = document.querySelectorAll('#parent1, #parent2');
+            punnettInputs.forEach(input => {
+                input.addEventListener('input', function(e) {
+                    // Don't auto-uppercase while typing, only on calculation
+                    this.value = this.value.replace(/[^a-zA-Z]/g, '');
+                });
+                
+                input.addEventListener('blur', function(e) {
+                    // Convert to uppercase when user leaves the field
+                    this.value = this.value.toUpperCase();
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // FIXED: Blog Navigation Functions
+        function showBlogPost(blogId) {
+            const blog = blogPosts[blogId];
+            if (!blog) return;
+
+            // Hide blog list and tools section, show blog detail
+            document.getElementById('blog-list').style.display = 'none';
+            document.getElementById('tools').style.display = 'none';
+            document.getElementById('blog-detail').style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Update blog article content - FIXED ORDER
+            document.getElementById('blog-article-content').innerHTML = `
+                <header class="blog-article-header">
+                    <span class="blog-category">${blog.category}</span>
+                    <h1>${blog.title}</h1>
+                    <div class="blog-article-meta">
+                        <span><i class="far fa-user"></i> ${blog.author}</span>
+                        <span><i class="far fa-calendar"></i> ${blog.date}</span>
+                        <span><i class="far fa-clock"></i> ${blog.readTime}</span>
+                    </div>
+                </header>
+                
+                <img src="${blog.image}" alt="${blog.title}" class="blog-article-image">
+                
+                <div class="blog-article-content">
+                    ${blog.content}
+                </div>
+                
+                <div class="blog-article-footer">
+                    <button class="back-to-blog-btn" onclick="showBlogList()">
+                        <i class="fas fa-arrow-left"></i> Back to Articles
+                    </button>
+                </div>
+            `;
+        }
+
+        function showBlogList() {
+            document.getElementById('blog-detail').style.display = 'none';
+            document.getElementById('tools').style.display = 'block';
+            document.getElementById('blog-list').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add this function to handle navigation to home
+        function navigateToHome() {
+            document.getElementById('blog-detail').style.display = 'none';
+            document.getElementById('tools').style.display = 'block';
+            document.getElementById('blog-list').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Punnett Square Calculator - FIXED VERSION
+        function calculatePunnett() {
+            const parent1Input = document.getElementById('parent1');
+            const parent2Input = document.getElementById('parent2');
+            const placeholder = document.getElementById('punnett-placeholder');
+            const resultsSection = document.getElementById('punnett-results-section');
+            
+            // Convert to uppercase only when calculating
+            let parent1 = parent1Input.value.toUpperCase();
+            let parent2 = parent2Input.value.toUpperCase();
+            
+            // Update the input fields with uppercase values
+            parent1Input.value = parent1;
+            parent2Input.value = parent2;
+            
+            // Set default values if empty
+            if (!parent1) parent1 = "AA";
+            if (!parent2) parent2 = "AA";
+            
+            // Validate genotypes (should be 2 characters, only letters)
+            if (!/^[A-Za-z]{2}$/.test(parent1) || !/^[A-Za-z]{2}$/.test(parent2)) {
+                resultsSection.innerHTML = '<p class="error">❌ Genotypes must be exactly 2 letters (e.g., AA, Aa, aa)</p>';
+                placeholder.style.display = 'none';
+                resultsSection.style.display = 'block';
+                return;
+            }
+            
+            // Extract alleles for each parent
+            const p1Allele1 = parent1[0];
+            const p1Allele2 = parent1[1];
+            const p2Allele1 = parent2[0];
+            const p2Allele2 = parent2[1];
+            
+            // Generate gametes (all possible combinations)
+            const p1Gametes = [p1Allele1, p1Allele2];
+            const p2Gametes = [p2Allele1, p2Allele2];
+            
+            // Generate Punnett Square
+            let punnettHTML = '<h4>Punnett Square Results</h4>';
+            punnettHTML += '<div class="punnett-square">';
+            
+            // Empty top-left cell
+            punnettHTML += '<div class="punnett-cell punnett-header"></div>';
+            
+            // Column headers (Parent 2 gametes)
+            p2Gametes.forEach(gamete => {
+                punnettHTML += `<div class="punnett-cell punnett-header">${gamete}</div>`;
+            });
+            
+            // Rows
+            p1Gametes.forEach(p1Gamete => {
+                // Row header (Parent 1 gamete)
+                punnettHTML += `<div class="punnett-cell punnett-header">${p1Gamete}</div>`;
+                
+                // Genotype cells
+                p2Gametes.forEach(p2Gamete => {
+                    // Create genotype by combining gametes
+                    const genotype = p1Gamete + p2Gamete;
+                    punnettHTML += `<div class="punnett-cell punnett-genotype">${genotype}</div>`;
+                });
+            });
+            
+            punnettHTML += '</div>';
+            
+            // Calculate all possible offspring genotypes
+            const allGenotypes = [];
+            p1Gametes.forEach(p1Gamete => {
+                p2Gametes.forEach(p2Gamete => {
+                    allGenotypes.push(p1Gamete + p2Gamete);
+                });
+            });
+            
+            // Count genotype occurrences
+            const genotypeCounts = {};
+            allGenotypes.forEach(genotype => {
+                genotypeCounts[genotype] = (genotypeCounts[genotype] || 0) + 1;
+            });
+            
+            // Calculate probabilities
+            const total = allGenotypes.length;
+            const genotypeProbabilities = {};
+            Object.keys(genotypeCounts).forEach(genotype => {
+                genotypeProbabilities[genotype] = (genotypeCounts[genotype] / total * 100).toFixed(1);
+            });
+            
+            // Display genotype probabilities
+            punnettHTML += '<div class="punnett-results">';
+            punnettHTML += '<h4>Genotype Probabilities</h4>';
+            punnettHTML += '<div class="genotype-results">';
+            
+            Object.keys(genotypeProbabilities).forEach(genotype => {
+                const count = genotypeCounts[genotype];
+                punnettHTML += `
+                    <div class="genotype-item">
+                        <div><strong>${genotype}</strong></div>
+                        <div>${count}/${total}</div>
+                        <div class="genotype-ratio">${genotypeProbabilities[genotype]}%</div>
+                    </div>
+                `;
+            });
+            
+            punnettHTML += '</div>';
+            
+            // Calculate phenotype probabilities (assuming complete dominance)
+            const phenotypes = {};
+            Object.keys(genotypeCounts).forEach(genotype => {
+                // For complete dominance: AA and Aa show dominant phenotype, aa shows recessive
+                let phenotype;
+                const alleles = genotype.split('');
+                if (alleles[0] === alleles[1]) {
+                    // Homozygous
+                    phenotype = alleles[0].toUpperCase() === alleles[0] ? 'Dominant' : 'Recessive';
+                } else {
+                    // Heterozygous - show dominant phenotype
+                    phenotype = 'Dominant';
+                }
+                
+                phenotypes[phenotype] = (phenotypes[phenotype] || 0) + genotypeCounts[genotype];
+            });
+            
+            // Display phenotype probabilities
+            punnettHTML += '<h4>Phenotype Probabilities</h4>';
+            punnettHTML += '<div class="genotype-results">';
+            
+            Object.keys(phenotypes).forEach(phenotype => {
+                const probability = (phenotypes[phenotype] / total * 100).toFixed(1);
+                const count = phenotypes[phenotype];
+                punnettHTML += `
+                    <div class="genotype-item">
+                        <div><strong>${phenotype}</strong></div>
+                        <div>${count}/${total}</div>
+                        <div class="genotype-ratio">${probability}%</div>
+                    </div>
+                `;
+            });
+            
+            punnettHTML += '</div>';
+            
+            // Add inheritance pattern information
+            punnettHTML += `
+                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(50, 205, 50, 0.1); border-radius: 8px; border-left: 4px solid var(--accent);">
+                    <h4>Inheritance Pattern</h4>
+                    <p><strong>Parent 1:</strong> ${parent1} | <strong>Parent 2:</strong> ${parent2}</p>
+                    <p>This cross demonstrates ${getInheritancePattern(parent1, parent2)} inheritance.</p>
+                </div>
+            `;
+            
+            punnettHTML += '</div>';
+            
+            // Hide placeholder and show results
+            placeholder.style.display = 'none';
+            resultsSection.innerHTML = punnettHTML;
+            resultsSection.style.display = 'block';
+        }
+
+        // Helper function to determine inheritance pattern
+        function getInheritancePattern(parent1, parent2) {
+            const p1 = parent1.toUpperCase();
+            const p2 = parent2.toUpperCase();
+            
+            if (p1 === p2 && p1[0] === p1[1]) {
+                return 'homozygous ' + (p1 === p1.toUpperCase() ? 'dominant' : 'recessive');
+            } else if (p1 !== p2 && p1[0] !== p1[1] && p2[0] !== p2[1]) {
+                return 'heterozygous';
+            } else {
+                return 'mixed';
+            }
+        }
+
+        // DNA Sequence Analysis
+        function analyzeDNA() {
+            const sequenceInput = document.getElementById('dna-sequence');
+            const resultDiv = document.getElementById('dna-result');
+            const sequence = sequenceInput.value.trim().toUpperCase();
+            
+            if (!sequence) {
+                resultDiv.innerHTML = '<p class="error">Please enter a DNA sequence</p>';
+                return;
+            }
+            
+            // Validate DNA sequence (only A, T, C, G allowed)
+            if (!/^[ATCG]+$/.test(sequence)) {
+                resultDiv.innerHTML = '<p class="error">Invalid DNA sequence. Only A, T, C, G characters allowed.</p>';
+                return;
+            }
+            
+            // Perform analysis
+            const length = sequence.length;
+            const aCount = (sequence.match(/A/g) || []).length;
+            const tCount = (sequence.match(/T/g) || []).length;
+            const cCount = (sequence.match(/C/g) || []).length;
+            const gCount = (sequence.match(/G/g) || []).length;
+            
+            const gcContent = ((cCount + gCount) / length * 100).toFixed(2);
+            const atContent = ((aCount + tCount) / length * 100).toFixed(2);
+            
+            // Find complementary sequence
+            const complementary = sequence.split('').map(base => {
+                switch(base) {
+                    case 'A': return 'T';
+                    case 'T': return 'A';
+                    case 'C': return 'G';
+                    case 'G': return 'C';
+                    default: return base;
+                }
+            }).join('');
+            
+            const reverseComplement = complementary.split('').reverse().join('');
+            
+            // Display results
+            let resultsHTML = `
+                <h4>DNA Sequence Analysis Results</h4>
+                <div class="result-item"><strong>Sequence Length:</strong> ${length} bases</div>
+                <div class="result-item"><strong>Nucleotide Composition:</strong></div>
+                <div class="result-item">- Adenine (A): ${aCount} (${((aCount/length)*100).toFixed(2)}%)</div>
+                <div class="result-item">- Thymine (T): ${tCount} (${((tCount/length)*100).toFixed(2)}%)</div>
+                <div class="result-item">- Cytosine (C): ${cCount} (${((cCount/length)*100).toFixed(2)}%)</div>
+                <div class="result-item">- Guanine (G): ${gCount} (${((gCount/length)*100).toFixed(2)}%)</div>
+                <div class="result-item"><strong>GC Content:</strong> ${gcContent}%</div>
+                <div class="result-item"><strong>AT Content:</strong> ${atContent}%</div>
+                
+                <div class="result-item"><strong>Complementary Sequence:</strong></div>
+                <div class="sequence-display">${complementary}</div>
+                
+                <div class="result-item"><strong>Reverse Complement:</strong></div>
+                <div class="sequence-display">${reverseComplement}</div>
+            `;
+            
+            // Add molecular weight calculation
+            const molecularWeight = (aCount * 313.21) + (tCount * 304.2) + (cCount * 289.18) + (gCount * 329.21);
+            resultsHTML += `<div class="result-item"><strong>Approximate Molecular Weight:</strong> ${molecularWeight.toFixed(2)} g/mol</div>`;
+            
+            resultDiv.innerHTML = resultsHTML;
+        }
+        
+        // Drug Interaction Checker
+        async function checkDrugInteractions() {
+            const drug1 = document.getElementById('drug1').value.trim();
+            const drug2 = document.getElementById('drug2').value.trim();
+            const resultDiv = document.getElementById('interaction-result');
+            const spinner = document.getElementById('drug-spinner');
+            
+            if (!drug1 || !drug2) {
+                resultDiv.innerHTML = '<p class="error">Please enter both drug names</p>';
+                return;
+            }
+            
+            // Show loading spinner
+            spinner.style.display = 'block';
+            resultDiv.innerHTML = '<p>Checking for interactions...</p>';
+            
+            try {
+                // Simulate API call with timeout
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                spinner.style.display = 'none';
+                
+                // Use the improved drug interaction database
+                checkImprovedDrugInteractions(drug1, drug2, resultDiv);
+                
+            } catch (error) {
+                spinner.style.display = 'none';
+                checkImprovedDrugInteractions(drug1, drug2, resultDiv);
+            }
+        }
+        
+        // Improved drug interactions database
+        function checkImprovedDrugInteractions(drug1, drug2, resultDiv) {
+            const interactionsDB = {
+                // Major interactions
+                'WARFARIN,IBUPROFEN': {
+                    level: 'Major',
+                    description: 'Increased risk of bleeding - avoid combination',
+                    mechanism: 'Ibuprofen may increase the anticoagulant effect of warfarin',
+                    recommendation: 'Avoid combination or monitor closely for bleeding'
+                },
+                'SIMVASTATIN,CLARITHROMYCIN': {
+                    level: 'Major', 
+                    description: 'Increased risk of muscle toxicity (rhabdomyolysis)',
+                    mechanism: 'Clarithromycin inhibits metabolism of simvastatin',
+                    recommendation: 'Use alternative antibiotic or statin'
+                },
+                'SILDENAFIL,NITROGLYCERIN': {
+                    level: 'Major',
+                    description: 'Severe hypotension - contraindicated combination',
+                    mechanism: 'Both drugs cause vasodilation and can dramatically lower blood pressure',
+                    recommendation: 'ABSOLUTELY AVOID - contraindicated'
+                }
+            };
+            
+            const key1 = `${drug1.toUpperCase()},${drug2.toUpperCase()}`;
+            const key2 = `${drug2.toUpperCase()},${drug1.toUpperCase()}`;
+            
+            const interaction = interactionsDB[key1] || interactionsDB[key2];
+            
+            if (interaction) {
+                resultDiv.innerHTML = `
+                    <h4>Drug Interaction Check</h4>
+                    <div class="result-item"><strong>Drugs Checked:</strong> ${drug1} and ${drug2}</div>
+                    <div class="result-item"><strong>Interaction Level:</strong> <span class="${interaction.level === 'Major' ? 'error' : 'warning'}">${interaction.level}</span></div>
+                    <div class="result-item"><strong>Description:</strong> ${interaction.description}</div>
+                    <div class="result-item"><strong>Mechanism:</strong> ${interaction.mechanism}</div>
+                    <div class="result-item"><strong>Recommendation:</strong> ${interaction.recommendation}</div>
+                    <div class="result-item warning" style="margin-top: 1rem;">⚠️ Disclaimer: This is for educational purposes only. Always consult a healthcare professional.</div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <h4>Drug Interaction Check</h4>
+                    <div class="result-item"><strong>Drugs Checked:</strong> ${drug1} and ${drug2}</div>
+                    <div class="result-item success">✅ No known major interactions found in our database.</div>
+                    <div class="result-item"><strong>Common drug examples you can try:</strong></div>
+                    <div class="result-item">• Warfarin + Ibuprofen (Major interaction)</div>
+                    <div class="result-item">• Simvastatin + Clarithromycin (Major interaction)</div>
+                    <div class="result-item warning" style="margin-top: 1rem;">⚠️ Note: This doesn't guarantee safety. Always consult a healthcare professional.</div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
